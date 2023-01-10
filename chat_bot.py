@@ -23,7 +23,7 @@ def start(update: Update, context: CallbackContext):
     elif message == '/w_db':
         update.message.reply_text(fu.write_db())
     else:
-        update.message.reply_text(f'Введите корректные данные.')
+        update.message.reply_text(f'Выберете команду')
 
 
 def catch_message(update: Update, context: CallbackContext):
@@ -40,14 +40,14 @@ updater = Updater(TOKEN)
 dispatcher = updater.dispatcher
 
 start_handler = CommandHandler('start', start)
-answer_handler = MessageHandler(Filters.text, catch_message)
 init_db_handler = CommandHandler('s_db', fu.show_db)
 write_db_handler = CommandHandler('w_db', fu.write_db)
+answer_handler = MessageHandler(Filters.text, catch_message)
 
 dispatcher.add_handler(start_handler)
-dispatcher.add_handler(answer_handler)
 dispatcher.add_handler(init_db_handler)
 dispatcher.add_handler(write_db_handler)
+dispatcher.add_handler(answer_handler)
 
 print('Началось!')
 updater.start_polling()
